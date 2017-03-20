@@ -21,6 +21,24 @@ public class LinkedList<T> {
         return size;
     }
 
+    private boolean isEmpty() {
+        return size==0;
+    }
+
+    public void add(T data) {
+        add(new Node<>(data));
+    }
+
+    private void add(Node<T> data) {
+        if(isEmpty()) {
+            head = tail = data;
+        } else {
+            tail.setNext(data);
+            data.setPrev(tail);
+            tail = data;
+        }
+    }
+
     private class Node<T> {
         private T data;
         private Node<T> next, prev;
