@@ -48,6 +48,23 @@ public class LinkedList<T> {
             }
             size--;
             return val;
+
+    private boolean isEmpty() {
+        return size==0;
+    }
+
+    public void add(T data) {
+        add(new Node<>(data));
+    }
+
+    private void add(Node<T> data) {
+        if(isEmpty()) {
+            head = tail = data;
+        } else {
+            tail.setNext(data);
+            data.setPrev(tail);
+            tail = data;
+
         }
     }
 
