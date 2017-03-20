@@ -21,6 +21,34 @@ public class LinkedList<T> {
         return size;
     }
 
+    public T remove(T data) {
+        Node<T> curr = head;
+        while(curr != null && !curr.getData().equals(data)) {
+            curr = curr.getNext();
+        }
+        if(curr == null) {
+            return null;
+        } else {
+            T val = curr.getData();
+            if(curr.getPrev() == null){
+                head = curr.getNext();
+                head.setPrev(null);
+                curr.setNext(null);
+            } else if (curr.getNext() == null) {
+                tail = curr.getPrev();
+                tail.setNext(null);
+                curr.setPrev(null);
+            } else {
+                Node<T> prev = curr.getPrev();
+                Node<T> next = curr.getNext();
+                prev.setNext(curr.getNext());
+                next.setPrev(curr.getPrev());
+                curr.setNext(null);
+                curr.setPrev(null);
+            }
+            size--;
+            return val;
+
     private boolean isEmpty() {
         return size==0;
     }
@@ -36,6 +64,7 @@ public class LinkedList<T> {
             tail.setNext(data);
             data.setPrev(tail);
             tail = data;
+
         }
     }
 
