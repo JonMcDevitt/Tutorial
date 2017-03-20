@@ -8,7 +8,13 @@ public class LinkedList<T> {
     private int size;
 
     public LinkedList() {
+        head = tail = null;
+        size = 0;
+    }
 
+    public LinkedList(T data) {
+        head = tail = new Node<>(data);
+        size = 1;
     }
 
     public int size() {
