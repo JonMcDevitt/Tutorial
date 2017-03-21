@@ -23,20 +23,31 @@ public class LinkedList<T> {
 
     public T remove(T data) {
         Node<T> curr = head;
-        while(curr != null && !curr.getData().equals(data)) {
+        while (curr != null && !curr.getData().equals(data)) {
             curr = curr.getNext();
         }
-        if(curr == null) {
+        if (curr == null) {
             return null;
         } else {
             T val = curr.getData();
-            if(curr.getPrev() == null){
-                head = curr.getNext();
-                head.setPrev(null);
+//            System.out.println(curr.getData());
+//            System.out.println(curr.getNext().getData());
+//            System.out.println(curr.getPrev().getData());
+            if (curr.getPrev() == null) {
+                head = (curr.getNext() == null ? null : curr.getNext());
+                if(head != null) {
+                    head.setPrev(null);
+                } else {
+                    head = tail;
+                }
                 curr.setNext(null);
             } else if (curr.getNext() == null) {
-                tail = curr.getPrev();
-                tail.setNext(null);
+                tail = (curr.getPrev() == null ? null : curr.getPrev());
+                if(tail != null) {
+                    tail.setNext(null);
+                } else {
+                    head = tail;
+                }
                 curr.setPrev(null);
             } else {
                 Node<T> prev = curr.getPrev();
@@ -48,6 +59,8 @@ public class LinkedList<T> {
             }
             size--;
             return val;
+        }
+    }
 
     private boolean isEmpty() {
         return size==0;
@@ -64,8 +77,8 @@ public class LinkedList<T> {
             tail.setNext(data);
             data.setPrev(tail);
             tail = data;
-
         }
+        size++;
     }
 
     private class Node<T> {
