@@ -1,0 +1,5 @@
+Handling exceptions is easy. There are two ways to handle exceptions: either use a try/catch block or write the "throws"
+keyword in the method header followed by the specific set of Exceptions you would like to handle. Try/catch blocks are
+best used when the thing you want to do is small and easily removed from the overall process of your method. When you
+have a process which throws an exception that cannot easily be kept separate from the majority of your code, then it is
+best to use a method header with the "throws" keyword.
