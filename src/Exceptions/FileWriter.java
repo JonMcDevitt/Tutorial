@@ -42,7 +42,17 @@ public class FileWriter {
             rows.add(rowToPrint);
         }
         /** How do we print these to the table? */
+        try {
+            BufferedWriter fileWriter = new BufferedWriter(new java.io.FileWriter(new File(filename)));
 
+            for(String cell : rows) {
+                fileWriter.write(cell + "\n");
+            }
+
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return file;
     }
 }

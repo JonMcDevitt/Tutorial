@@ -31,5 +31,4 @@ public class FileWriterTest {
         File newFile = FileWriter.writeTableToFile(table, "dataOut.txt");
         assertTrue(newFile.exists());
     }
-
 }
